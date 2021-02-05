@@ -6,12 +6,14 @@ const weatherData = (address, callback) => {
     request({url, json : true}, (error, {body}) => {
         if(error){
             callback("Can't fetch data from open weather map api", undefined);
-        } else{
+        } else if(!body.main || !body.main.temp || !body.weather || !body.name){
+            callback("Unable to find required data, try another location", undefined);
+            } else{
             callback(undefined, {
                 temperature: body.main.temp,
                 description: body.weather[0].description,
                 cityName: body.name
-            })
+            });
         }
 
     })

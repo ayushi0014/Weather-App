@@ -36,7 +36,7 @@ app.get('/weather', (req, res) => {
         });
     }
 
-    weatherData(address, (error, {temperature, description, cityName}) => {
+    weatherData(address, (error, {temperature, description, cityName} = {}) => {
         if(error){
             res.send({
                 error

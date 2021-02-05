@@ -31,8 +31,13 @@ weatherForm.addEventListener('submit', (event) => {
                 tempElement.textContent = "";
                 weatherCondition.textContent = "";
             } else {
+                if(data.description == "rain" || data.description == "fog"){
+                    weatherIcon.className = "wi wi-day-" + data.description
+                } else {
+                    weatherIcon.className = "wi wi-day-cloudy"
+                }
                 locationElement.textContent = data.cityName;
-                tempElement.textContent = data.temperature;
+                tempElement.textContent = (data.temperature - 273.5).toFixed(2) + String.fromCharCode(176);
                 weatherCondition.textContent = data.description.toUpperCase();
             }
         })
